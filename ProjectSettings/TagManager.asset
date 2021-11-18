@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - chest
+  - text
+  - npc
+  - tree
   layers:
   - Default
   - TransparentFX
