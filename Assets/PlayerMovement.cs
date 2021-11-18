@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,8 +53,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        canChop = true;
-        currentTree = other.gameObject;
+        
+        switch (other.gameObject.tag) {
+            case "tree":
+                canChop = true;
+                currentTree = other.gameObject;
+                break;
+            case "building":
+                if (other.gameObject.name == "first_house") {
+                    SceneManager.LoadSceneAsync("first_house");
+                }
+                break;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -70,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case "npc":
                 if (other.gameObject.name == "fred") {
-                    StartCoroutine(DoDialogue("You are not allowed to leave", 4f));
+                    StartCoroutine(DoDialogue("Please enter the house to continue", 4f));
                 }
                 break;
             case "tree":
