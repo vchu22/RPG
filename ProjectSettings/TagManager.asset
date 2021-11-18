@@ -8,6 +8,7 @@ TagManager:
   - text
   - npc
   - tree
+  - building
   layers:
   - Default
   - TransparentFX
